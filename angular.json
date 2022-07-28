@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "amsp-data:build:production",
+            "firebaseProject": "ccrp-347210",
+            "firebaseHostingSite": "ccrp-347210"
+          }
         }
       }
     }

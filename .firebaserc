@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ccrp-347210": {
+      "hosting": {
+        "amsp-data": [
+          "ccrp-347210"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ccrp-347210"
+  }
+}
