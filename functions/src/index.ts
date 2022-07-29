@@ -1,1 +1,1 @@
-export {cloudSqlFunctions} from "./cloud-sql";
+export {cloudSqlFunctions} from "./database";
