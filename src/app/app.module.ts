@@ -15,7 +15,7 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFunctions(() => getFunctions())
   ],
