@@ -14,15 +14,11 @@ const config = {
 export const connect = functions.https.onRequest(async (request, response) => {
   const responseMessage = [];
   responseMessage.push("Starting");
-  const instance: Knex = knex(config as Knex.Config);
-  instance
-      .raw("select 1")
-      .then(() => {
-        responseMessage.push("Connected to database - OK");
-      })
-      .catch((err) => {
-        responseMessage.push(`Failed to connect to database: ${err}`);
-        process.exit(1);
-      });
+  const db: Knex = knex(config as Knex.Config);
+  const tableNames = await db
+      .select()
+      .from("pg_catalog.pg_tables");
+  await db.destroy();
+  responseMessage.push({tableNames});
   response.send({responseMessage});
 });
