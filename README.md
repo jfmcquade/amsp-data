@@ -12,7 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Installation
 
-### Download the repo with binary assets
+### Download the repo
 ```
 git clone https://github.com/jfmcquade/amsp-data.git
 ```
