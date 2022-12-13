@@ -29,6 +29,10 @@ Then run
 npm install
 ```
 
+### Firebase Authentication
+
+Ask the dev team for the required config files to connect to Firebase.
+
 ## General Angular Instructions
 
 ### Development server

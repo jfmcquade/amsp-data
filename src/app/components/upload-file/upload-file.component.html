@@ -1,0 +1,25 @@
+<p>This page should allow the user to:</p>
+<ul>
+  <li>Upload a file</li>
+  <li>
+    Save the file to the storage bucket or Google Drive (user can choose)
+    <ul>
+      <li>
+        The file should be renamed with an auto-generated file ID in the storage
+        bucket
+      </li>
+    </ul>
+  </li>
+  <li>
+    Prompt the user to manually enter metadata for the file
+    <ul>
+      <li>
+        Auto-populate the ID with the same generated file ID
+      </li>
+    </ul>
+  </li>
+  <li>Add the metadata as a new row to the metadata table in the database</li>
+</ul>
+
+<input type="file" class="file-upload" (change)="onFileSelected($event)" />
+
