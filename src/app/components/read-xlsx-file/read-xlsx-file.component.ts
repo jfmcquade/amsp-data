@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { XlsxReaderService } from 'src/app/services/xlsx-reader.service';
+import { XlsxReaderService } from 'src/app/services//xlsx-reader/xlsx-reader.service';
 
 @Component({
   selector: 'app-read-xlsx-file',
