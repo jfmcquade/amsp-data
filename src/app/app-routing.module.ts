@@ -4,9 +4,9 @@ import { ReadXlsxFileComponent } from './components/read-xlsx-file/read-xlsx-fil
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 
 const routes: Routes = [
-  {path: "", component: UploadFileComponent},
-  {path: "excel", component: ReadXlsxFileComponent},
-  {path: "uploadFile", component: UploadFileComponent}
+  { path: "", redirectTo: "uploadFile", pathMatch: "full" },
+  { path: "excel", component: ReadXlsxFileComponent },
+  { path: "uploadFile", component: UploadFileComponent }
 ];
 
 @NgModule({
