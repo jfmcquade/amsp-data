@@ -48,4 +48,27 @@ export class AddFilesComponent implements OnInit {
   this.dialogRef.close(this.form.value);    
   }
 
+  onFileSelected(event: Event) {
+    const files = (event.target as HTMLInputElement).files
+    if (files) {
+      return this.handleFile(files[0])
+    }
+    return console.log("No file")
+  }
+
+   /**
+   * TODO: This function should handle the file once it has been chosen
+   */
+   async handleFile(file: File | null) {
+    // e.g.const metadata = this.createMetadata(file)
+    // e.g. dataService.addFile(file)
+    // e.g. dataService.addMetadata(metadata)
+
+  };
+
+  async createMetadata(fileUuid: string) {
+    // TODO: prompt user to complete additional fields of metadata
+    return { fileUuid }
+  }
+
 }
