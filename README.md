@@ -49,15 +49,12 @@ If required, you can request access to the Firebase project for this app from th
 ### Running the local emulators
 In order to start the [Firebase Local Emulator Suite](https://firebase.google.com/docs/emulator-suite), run
 ```
+$ npm run build
 $ firebase emulators:start
 ```
 This will start emulators for Firebase's Authentication (which handles authenticating users) and Firestore (a realtime NoSQL database). The emulator UI should be available at http://localhost:4000/.
 
-The emulated main app should be available at http://localhost:4000/.
-
-### Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The emulated main app should be available at http://localhost:4200/.
 
 
 ## General Angular Instructions
