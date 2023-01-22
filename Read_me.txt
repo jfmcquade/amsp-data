@@ -19,3 +19,15 @@ i add [disabled]="form.invalid" button is not focussable app/components/dashboar
 
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
+
+firebase emulators:start //demarrer l'emulateur
+firebase init emulators // initialiser l'emulateur
+
+
+https://stackoverflow.com/questions/66666406/java-java-execute-workspacecommand-failed-in-vscode //corriger l'erreur : "Error: Could not spawn `java -version`. Please make sure Java is installed and on your system PATH."
+
+//envoie des fichiers sur git
+git pull
+git add .
+git commit -m "migrated angularfire to use compat version; update README; set up firebase emulators"
+ git push
