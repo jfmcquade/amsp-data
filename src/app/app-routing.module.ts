@@ -15,7 +15,7 @@ const routes: Routes = [
     {path:'videos', component: VideosComponent},
     {path:'images', component: ImagesComponent},
     {path:'fichiers', component: FichiersComponent}
-    
+
   ] },
 ];
 

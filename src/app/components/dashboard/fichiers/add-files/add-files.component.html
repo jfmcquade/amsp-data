@@ -52,6 +52,9 @@
                     <mat-error *ngIf="form.get('email')?.invalid || form.get('email')?.dirty || form.get('email')?.touched">Veuillez entrer une adresse email valide </mat-error>
                 </mat-form-field> 
                 
+                <!-- uploader le fichier-->
+                <input title="Upload File" type="file" class="file-upload" (change)="onFileSelected($event)" />
+
                 <!-- Observations -->
                 <mat-form-field class="example-full-width">
                     <mat-label>Description</mat-label>
@@ -59,7 +62,7 @@
                     <mat-hint align="start"><strong> Pas d'infos personnelles</strong> </mat-hint>
                     <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
                 </mat-form-field>
-                <!-- uploader le fichier-->
+                
             </div>
         </mat-grid-tile>
     </mat-grid-list>
@@ -67,5 +70,5 @@
 
 <div mat-dialog-actions>
     <button mat-raised-button mat-dialog-close (click)="cancelRegistration()"> Annuler </button>
-    <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial (click)="registerFiles()" > Enregistrer </button> <!-- i add[disabled]="form.invalid" button is not focussable-->
+    <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial (click)="registerFiles()" [disabled]="form.invalid"> Enregistrer </button> <!-- i add[disabled]="form.invalid" button is not focussable-->
 </div>
