@@ -6,31 +6,48 @@
         <mat-grid-tile>
                 <div>
                     <!--emplacement de stockage--> 
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Selection du serveur</mat-label>
                         <mat-select formControlName="serveur" name="serveur">
                           <mat-option *ngFor="let serveur of serveurs" [value]="serveur">{{serveur}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <!-- Libelle du fichier -->
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Libelle du fichier</mat-label>
                         <input matInput placeholder="Donnees_test_projet1" formControlName="nom_fichier" required>
                         <mat-error *ngIf="form.get('nom_fichier')?.invalid || form.get('nom_fichier')?.dirty || form.get('nom_fichier')?.touched">Entrez un libelle valide </mat-error>
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        
                     </mat-form-field>
 
                     <!-- Annee-->
-                    <mat-form-field>
+                    <!--<mat-form-field appearance="outline">
                         <mat-label>Annee </mat-label>
                         <input matInput placeholder="2020" formControlName="annee" required>
                         <mat-error *ngIf="form.get('annee')?.invalid || form.get('annee')?.dirty || form.get('annee')?.touched"> Veuillez entrer une annee valide </mat-error>
-                    </mat-form-field>
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        
+                    </mat-form-field>-->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Month and Year</mat-label>
+                        <input matInput [matDatepicker]="dp" [formControl]="annee">
+                        <mat-hint>MM/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp
+                                        startView="multi-year"
+                                        (monthSelected)="setMonthAndYear($event, dp)"
+                                        panelClass="example-month-picker">
+                        </mat-datepicker>
+                      </mat-form-field>
 
                     <!-- Projet correspondant au fichier-->
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label> Projet </mat-label>
                         <input matInput placeholder="Savoirs Paysans" formControlName="projet" required>
                         <mat-error *ngIf="form.get('projet')?.invalid || form.get('projet')?.dirty || form.get('projet')?.touched">Entrez un projet valide </mat-error>
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        
                     </mat-form-field>
                                                 
                 </div>
@@ -39,17 +56,21 @@
         <mat-grid-tile>
             <div>                 
                 <!-- responsable du fichier-->
-                <mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-label>Nom & prenom du resp. fichier </mat-label>
                     <input matInput placeholder="Ex: KABORE B Roger" formControlName="responsable_fichier" required>
                     <mat-error *ngIf="form.get('responsable_fichier')?.invalid || form.get('responsable_fichier')?.dirty || form.get('responsable_fichier')?.touched">Veuillez saisir des valeurs correctes </mat-error>
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    
                 </mat-form-field>  
 
                 <!--email de celui qui a uploade le fichier-->
-                <mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-label>Votre email</mat-label>
                     <input matInput placeholder="test@gmail.com" formControlName="email" required>
                     <mat-error *ngIf="form.get('email')?.invalid || form.get('email')?.dirty || form.get('email')?.touched">Veuillez entrer une adresse email valide </mat-error>
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    
                 </mat-form-field> 
                 
                 <!-- uploader le fichier-->
