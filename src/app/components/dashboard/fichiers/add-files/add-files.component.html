@@ -15,22 +15,22 @@
                     <!-- Libelle du fichier -->
                     <mat-form-field appearance="outline">
                         <mat-label>Libelle du fichier</mat-label>
-                        <input matInput placeholder="Donnees_test_projet1" formControlName="nom_fichier" required>
+                        <input matInput placeholder="Ex. Donnees_test_projet1" formControlName="nom_fichier" required>
                         <mat-error *ngIf="form.get('nom_fichier')?.invalid || form.get('nom_fichier')?.dirty || form.get('nom_fichier')?.touched">Entrez un libelle valide </mat-error>
-                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
                         
                     </mat-form-field>
 
                     <!-- Annee-->
-                    <!--<mat-form-field appearance="outline">
-                        <mat-label>Annee </mat-label>
-                        <input matInput placeholder="2020" formControlName="annee" required>
-                        <mat-error *ngIf="form.get('annee')?.invalid || form.get('annee')?.dirty || form.get('annee')?.touched"> Veuillez entrer une annee valide </mat-error>
-                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                        
-                    </mat-form-field>-->
                     <mat-form-field appearance="outline">
-                        <mat-label>Month and Year</mat-label>
+                        <mat-label>Annee </mat-label>
+                        <input matInput placeholder="Ex. 2020" matInput type="number" formControlName="annee" required>
+                        <mat-error *ngIf="form.get('annee')?.invalid || form.get('annee')?.dirty || form.get('annee')?.touched"> Veuillez entrer une annee valide </mat-error>
+                        <mat-icon matSuffix>calendar_month</mat-icon>
+                        
+                    </mat-form-field>
+                    <!--<mat-form-field appearance="outline">
+                        <mat-label>Choisir la date</mat-label>
                         <input matInput [matDatepicker]="dp" [formControl]="annee">
                         <mat-hint>MM/YYYY</mat-hint>
                         <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
@@ -39,14 +39,14 @@
                                         (monthSelected)="setMonthAndYear($event, dp)"
                                         panelClass="example-month-picker">
                         </mat-datepicker>
-                      </mat-form-field>
+                    </mat-form-field>-->
 
                     <!-- Projet correspondant au fichier-->
                     <mat-form-field appearance="outline">
                         <mat-label> Projet </mat-label>
-                        <input matInput placeholder="Savoirs Paysans" formControlName="projet" required>
+                        <input matInput placeholder="Ex. Savoirs Paysans" formControlName="projet" required>
                         <mat-error *ngIf="form.get('projet')?.invalid || form.get('projet')?.dirty || form.get('projet')?.touched">Entrez un projet valide </mat-error>
-                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        <mat-icon matSuffix>diversity_3</mat-icon>
                         
                     </mat-form-field>
                                                 
@@ -58,18 +58,18 @@
                 <!-- responsable du fichier-->
                 <mat-form-field appearance="outline">
                     <mat-label>Nom & prenom du resp. fichier </mat-label>
-                    <input matInput placeholder="Ex: KABORE B Roger" formControlName="responsable_fichier" required>
+                    <input matInput placeholder="Ex. KABORE B Roger" formControlName="responsable_fichier" required>
                     <mat-error *ngIf="form.get('responsable_fichier')?.invalid || form.get('responsable_fichier')?.dirty || form.get('responsable_fichier')?.touched">Veuillez saisir des valeurs correctes </mat-error>
-                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-icon matSuffix>person</mat-icon>
                     
                 </mat-form-field>  
 
                 <!--email de celui qui a uploade le fichier-->
                 <mat-form-field appearance="outline">
                     <mat-label>Votre email</mat-label>
-                    <input matInput placeholder="test@gmail.com" formControlName="email" required>
+                    <input matInput placeholder="Ex. test@gmail.com" formControlName="email" required>
                     <mat-error *ngIf="form.get('email')?.invalid || form.get('email')?.dirty || form.get('email')?.touched">Veuillez entrer une adresse email valide </mat-error>
-                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-icon matSuffix>contact_mail</mat-icon>
                     
                 </mat-form-field> 
                 
@@ -77,19 +77,19 @@
                 <input title="Upload File" type="file" class="file-upload" (change)="onFileSelected($event)" />
 
                 <!-- Observations -->
-                <mat-form-field class="example-full-width">
-                    <mat-label>Description</mat-label>
-                    <input matInput #message maxlength="500" placeholder="Ex. I need help with...">
-                    <mat-hint align="start"><strong> Pas d'infos personnelles</strong> </mat-hint>
-                    <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
-                </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea  matInput #message maxlength="500" cols="15" rows="2" laceholder="Ex. I need help with..."></textarea>
+                <mat-icon matSuffix>abc</mat-icon>
+                <mat-hint align="start"><strong> Pas d'infos personnelles</strong> </mat-hint>
+                <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
+            </mat-form-field>
                 
             </div>
         </mat-grid-tile>
     </mat-grid-list>
 </mat-dialog-content>
-
 <div mat-dialog-actions>
     <button mat-raised-button mat-dialog-close (click)="cancelRegistration()"> Annuler </button>
-    <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial (click)="registerFiles()" > Enregistrer </button> <!-- i add[disabled]="form.invalid" button is not focussable-->
+    <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial (click)="registerFiles()" [disabled]="form.invalid"> {{actionBtn}} </button> <!-- i add[disabled]="form.invalid" button is not focussable-->
 </div>

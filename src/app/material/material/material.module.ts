@@ -12,7 +12,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+//import {MatDatepickerModule} from '@angular/material/datepicker';
+//import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -29,7 +33,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
             MatInputModule,
             MatSelectModule,
             MatSnackBarModule,
-            MatDatepickerModule
+            MatTableModule,
+            MatPaginatorModule
 
           ],
   exports: [MatCardModule,
@@ -45,7 +50,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
             MatInputModule,
             MatSelectModule,
             MatSnackBarModule,
-            MatDatepickerModule
+            MatTableModule,
+            MatPaginatorModule
 
           ]
 })
