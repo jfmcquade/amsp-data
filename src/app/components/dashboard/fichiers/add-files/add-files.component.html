@@ -29,17 +29,6 @@
                         <mat-icon matSuffix>calendar_month</mat-icon>
                         
                     </mat-form-field>
-                    <!--<mat-form-field appearance="outline">
-                        <mat-label>Choisir la date</mat-label>
-                        <input matInput [matDatepicker]="dp" [formControl]="annee">
-                        <mat-hint>MM/YYYY</mat-hint>
-                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                        <mat-datepicker #dp
-                                        startView="multi-year"
-                                        (monthSelected)="setMonthAndYear($event, dp)"
-                                        panelClass="example-month-picker">
-                        </mat-datepicker>
-                    </mat-form-field>-->
 
                     <!-- Projet correspondant au fichier-->
                     <mat-form-field appearance="outline">
@@ -79,7 +68,7 @@
                 <!-- Observations -->
             <mat-form-field appearance="outline">
                 <mat-label>Description</mat-label>
-                <textarea  matInput #message maxlength="500" cols="15" rows="2" laceholder="Ex. I need help with..."></textarea>
+                <textarea  matInput #message maxlength="500" cols="15" rows="2" laceholder="Ex. I need help with..." formControlName="observation"></textarea>
                 <mat-icon matSuffix>abc</mat-icon>
                 <mat-hint align="start"><strong> Pas d'infos personnelles</strong> </mat-hint>
                 <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
