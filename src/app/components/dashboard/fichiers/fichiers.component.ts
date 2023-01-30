@@ -4,7 +4,8 @@ import { AddFilesComponent } from './add-files/add-files.component';
 import { ReadXlsxFileComponent } from '../../read-xlsx-file/read-xlsx-file.component';
 import { UploadFileComponent } from '../../upload-file/upload-file.component';
 import {MatSnackBar} from '@angular/material/snack-bar';    
-import { DataService } from 'src/app/services/shared/service/data.service';
+import { DataService } from 'src/app/services/shared/service/data/data.service';
+import { FileService } from 'src/app/services/shared/service/file/file.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
@@ -24,10 +25,12 @@ export class FichiersComponent implements OnInit {
 
  @ViewChild(MatPaginator) paginator!: MatPaginator;
  @ViewChild(MatSort) sort!: MatSort;
+  allFiles: any;
 
   constructor(
     public dialog : MatDialog,
     private dataApi : DataService,
+    private fileService: FileService,
     private _snackBar : MatSnackBar,
     //private formBuilder : FormBuilder,
 
@@ -35,7 +38,7 @@ export class FichiersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.getAllFichiers();
+    this.allFiles = this.getAllFichiers();
   }
 
   addFiles() {
@@ -52,7 +55,7 @@ export class FichiersComponent implements OnInit {
       if (!this.editFichiers){
         if (data) {
           //console.log("Enregistrer le fichier :", data);
-          this.dataApi.addFiles(data);
+          // this.dataApi.addFiles(data);
         } 
       } 
     })
@@ -79,18 +82,22 @@ export class FichiersComponent implements OnInit {
   }
   
 
-/*getAllFichiers() {
-  this.dataApi.registerFiles()
-  .subscribe({
-    next:(res)=>{
-      //console.log(res);
-      this.dataSource = new MatTableDataSource;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    },
-    error(err)=>{
-      alert("erreur fichier");
-    }
-  })
-  }*/
+getAllFichiers() {
+  const files = this.dataApi.getFiles()
+  console.log("All files:", files)
+  return files
+
+  // this.dataApi.registerFiles()
+  // .subscribe({
+  //   next:(res)=>{
+  //     //console.log(res);
+  //     this.dataSource = new MatTableDataSource;
+  //     this.dataSource.paginator = this.paginator;
+  //     this.dataSource.sort = this.sort;
+  //   },
+  //   error(err)=>{
+  //     alert("erreur fichier");
+  //   }
+  // })
+  }
 }

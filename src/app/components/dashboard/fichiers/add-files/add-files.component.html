@@ -91,5 +91,5 @@
 </mat-dialog-content>
 <div mat-dialog-actions>
     <button mat-raised-button mat-dialog-close (click)="cancelRegistration()"> Annuler </button>
-    <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial (click)="registerFiles()" [disabled]="form.invalid"> {{actionBtn}} </button> <!-- i add[disabled]="form.invalid" button is not focussable-->
+    <button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial (click)="addFiles()" [disabled]="form.invalid"> {{actionBtn}} </button> <!-- i add[disabled]="form.invalid" button is not focussable-->
 </div>
