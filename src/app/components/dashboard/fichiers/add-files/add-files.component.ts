@@ -22,6 +22,7 @@ export class AddFilesComponent implements OnInit {
   email !: string;
   serveurs: string[] = ['Google Drive', 'Storage Bucket'];
   file: File | undefined;
+  id !: string;
 
   constructor(
     private fb: FormBuilder,
@@ -32,18 +33,27 @@ export class AddFilesComponent implements OnInit {
     private dialogRef: MatDialogRef<AddFilesComponent>,
   ) {
     this.title = data.title;
+    this.id = data.id;
+    this.serveurs = data.serveurs;
+    this.nom_fichier = data.nom_fichier;
+    this.annee = data.annee;
+    this.projet = data.projet;
+    this.responsable_fichier = data.responsable_fichier;
+    this.email = data.email;   
+    this.file = data.file; 
+    this.actionBtn = data.actionBtn;
   }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      //uuid : ['', []],
-      serveur: ['', [Validators.required]],
-      nom_fichier: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      annee: ['', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]],
-      projet: ['', [Validators.required]],
-      responsable_fichier: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      observation: ['', [Validators.required, Validators.maxLength(500)]],
+      id : [this.id, []],
+      serveurs: [this.serveurs, [Validators.required]],
+      nom_fichier: [this.nom_fichier, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      annee: [this.annee, [Validators.required, Validators.maxLength(4), Validators.minLength(4)]],
+      projet: [this.projet, [Validators.required]],
+      responsable_fichier: [this.responsable_fichier, [Validators.required]],
+      email: [this.email, [Validators.required, Validators.email]],
+      observation: [this.observation, [Validators.required, Validators.maxLength(500)]],
     });
     if (this.editData) {
       this.actionBtn = "Mettre a jour";

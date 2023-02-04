@@ -18,7 +18,19 @@ export class DataService {
   }
 
   getFileMetadata() {
-    
+
   }
-  
+
+  updateFiles(fichier : any){
+    return this.afs.doc("fichier"+fichier.id).update(fichier);
+  }
+
+  deleteFiles(id: string){
+    return this.afs.doc("fichier"+id).delete();
+  }
+
+  getFilesById(id: string){
+    return this.afs.doc("fichier/"+id).valueChanges();
+  }
+
 }

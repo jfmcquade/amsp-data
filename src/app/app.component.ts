@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'amsp-data';
 }*/
 import { Component } from '@angular/core';
+import { AuthService } from './services/shared/service/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,4 +18,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'amsp-data';
+  userLoggedIn : boolean = false;
+  constructor(
+    private authApi : AuthService
+  ){}
+
+  ngOnInit(){
+    this.userLoggedIn = this.authApi.isUserLoggedIn();
+  }
 }

@@ -9,7 +9,7 @@ import { FileService } from 'src/app/services/shared/service/file/file.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
-//import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DeleteFilesComponent } from './delete-files/delete-files.component';
 
 @Component({
   selector: 'app-fichiers',
@@ -25,7 +25,8 @@ export class FichiersComponent implements OnInit {
 
  @ViewChild(MatPaginator) paginator!: MatPaginator;
  @ViewChild(MatSort) sort!: MatSort;
-  allFiles: any;
+ allFiles: any;
+ row: any;
 
   constructor(
     public dialog : MatDialog,
@@ -61,6 +62,56 @@ export class FichiersComponent implements OnInit {
     })
   }
 
+  viewFiles(row: any){
+    window.open('/dashboard/fichiers/'+row.id, '_blank');
+  }
+
+deleteFiles(row : any) {
+    //alert('Vous etes entrain d\'ajouter un fichier')
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        //dialogConfig.data = row;
+        dialogConfig.data = {
+          title : 'Supprimé avec succès',
+          
+        }
+        const dialogRef = this.dialog.open(DeleteFilesComponent, dialogConfig);
+        //ReadXlsxFileComponent, UploadFileComponent,
+        dialogRef.afterClosed().subscribe(data =>{
+            if (data) {
+              this.dataApi.deleteFiles(row.id);
+              this.openSnackBar("Suppression effectuée", "Ok");
+          } 
+        })
+      }
+
+  editFiles(row: any) {    
+    if (row.id==null || row.nom_fichier==null){
+      return;
+    }                                                      //function to edit files
+    //alert('Vous etes entrain d\'ajouter un fichier')
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = row;
+        dialogConfig.data.title = "Editer le fichier";
+        dialogConfig.data.actionBtn = "update";
+
+        const dialogRef = this.dialog.open(AddFilesComponent, dialogConfig);
+        //ReadXlsxFileComponent, UploadFileComponent,
+        dialogRef.afterClosed().subscribe(data =>{
+          if (!this.editFichiers){
+            if (data) {
+              this.dataApi.updateFiles(data);
+              this.openSnackBar("Enregistré avec succès.", "OK");
+              //console.log("Enregistrer le fichier :", data);
+              // this.dataApi.addFiles(data);
+            } 
+          } 
+        })
+      }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -80,12 +131,17 @@ export class FichiersComponent implements OnInit {
     this._snackBar.open(message, action);
     
   }
-  
+ 
+  //Update function
+
 
 getAllFichiers() {
-  const files = this.dataApi.getFiles()
-  console.log("All files:", files)
+  const files = this.fileService.getFile()   //I change a dataservice by fileservice
+  const metadata = this.dataApi.getFileMetadata() //I use this line to use a metadata
+  console.log("All files:", files, metadata)        
   return files
+  return metadata                         // I add this return
+
 
   // this.dataApi.registerFiles()
   // .subscribe({

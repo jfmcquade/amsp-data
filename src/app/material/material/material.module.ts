@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatMenuModule} from '@angular/material/menu';
 //import {MatDatepickerModule} from '@angular/material/datepicker';
 //import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { HttpClientModule } from '@angular/common/http';
@@ -34,7 +35,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
             MatSelectModule,
             MatSnackBarModule,
             MatTableModule,
-            MatPaginatorModule
+            MatPaginatorModule,
+            MatMenuModule
 
           ],
   exports: [MatCardModule,
@@ -51,7 +53,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
             MatSelectModule,
             MatSnackBarModule,
             MatTableModule,
-            MatPaginatorModule
+            MatPaginatorModule,
+            MatMenuModule
 
           ]
 })

@@ -5,6 +5,9 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
 import { VideosComponent } from './components/dashboard/videos/videos.component';
 import { ImagesComponent } from './components/dashboard/images/images.component';
 import { FichiersComponent } from './components/dashboard/fichiers/fichiers.component';
+import { ViewFilesComponent } from './components/dashboard/fichiers/view-files/view-files.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { AuthguardGuard } from './services/shared/service/guard/authguard.guard';
 
 const routes: Routes = [
  /* {path: "", component: UploadFileComponent},
@@ -14,9 +17,11 @@ const routes: Routes = [
     {path:'', redirectTo:'videos', pathMatch:'full'},
     {path:'videos', component: VideosComponent},
     {path:'images', component: ImagesComponent},
-    {path:'fichiers', component: FichiersComponent}
-
-  ] },
+    {path:'fichiers', component: FichiersComponent},
+    {path:'fichiers/:id', component: ViewFilesComponent}, 
+  ], canActivate : [AuthguardGuard] },
+    {path: 'login', component: LoginComponent},
+    {path : '', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 @NgModule({

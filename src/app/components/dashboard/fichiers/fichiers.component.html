@@ -63,7 +63,7 @@
                   </ng-container>
 
                   <!-- Action -->
-                  <ng-container matColumnDef="action">
+                 <!--<ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let row"> 
                     <button mat-icon-button (click)="editFichiers(row)" color="primary">
@@ -73,6 +73,28 @@
                         <mat-icon>delete</mat-icon>
                     </button>
                     </td>
+                  </ng-container>-->
+                  <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                      <td mat-cell *matCellDef="let row">
+                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example">  
+                          <mat-icon>more_vert</mat-icon>
+                      </button>
+                    </td>
+                   <mat-menu #menu="matMenu">
+                          <button mat-menu-item (click)="viewFiles(row)" >
+                              <mat-icon>open_in_new</mat-icon>
+                              <span>View</span>
+                          </button>
+                          <button mat-menu-item (click)="editFichiers(row)" color="primary">
+                            <mat-icon>edit</mat-icon>
+                            <span>Editer</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteFiles(row)">
+                          <mat-icon>delete</mat-icon>
+                          <span>Supprimer</span>
+                      </button>
+                    </mat-menu>
                   </ng-container>
               
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
