@@ -20,6 +20,7 @@ export class AddFilesComponent implements OnInit {
   observation !: string;
   responsable_fichier !: string;
   email !: string;
+  serveur !: string;
   serveurs: string[] = ['Google Drive', 'Storage Bucket'];
   file: File | undefined;
   id !: string;
@@ -34,7 +35,7 @@ export class AddFilesComponent implements OnInit {
   ) {
     this.title = data.title;
     this.id = data.id;
-    this.serveurs = data.serveurs;
+    this.serveur = data.serveur;
     this.nom_fichier = data.nom_fichier;
     this.annee = data.annee;
     this.projet = data.projet;
@@ -47,7 +48,7 @@ export class AddFilesComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       id : [this.id, []],
-      serveurs: [this.serveurs, [Validators.required]],
+      serveur: [this.serveur, [Validators.required]],
       nom_fichier: [this.nom_fichier, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       annee: [this.annee, [Validators.required, Validators.maxLength(4), Validators.minLength(4)]],
       projet: [this.projet, [Validators.required]],
