@@ -27,6 +27,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteFilesComponent } from './components/dashboard/fichiers/delete-files/delete-files.component';
 import { ViewFilesComponent } from './components/dashboard/fichiers/view-files/view-files.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { DeleteImagesComponent } from './components/dashboard/images/delete-images/delete-images.component';
+import { AddImagesComponent } from './components/dashboard/images/add-images/add-images.component';
+import { ViewImagesComponent } from './components/dashboard/images/view-images/view-images.component';
+import { ViewVideosComponent } from './components/dashboard/videos/view-videos/view-videos.component';
+import { AddVideosComponent } from './components/dashboard/videos/add-videos/add-videos.component';
+import { DeleteVideosComponent } from './components/dashboard/videos/delete-videos/delete-videos.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +49,12 @@ import { LoginComponent } from './components/auth/login/login.component';
     DeleteFilesComponent,
     ViewFilesComponent,
     LoginComponent,
+    DeleteImagesComponent,
+    AddImagesComponent,
+    ViewImagesComponent,
+    ViewVideosComponent,
+    AddVideosComponent,
+    DeleteVideosComponent,
   ],
   imports: [
     MaterialModule,

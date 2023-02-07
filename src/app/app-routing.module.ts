@@ -8,6 +8,8 @@ import { FichiersComponent } from './components/dashboard/fichiers/fichiers.comp
 import { ViewFilesComponent } from './components/dashboard/fichiers/view-files/view-files.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthguardGuard } from './services/shared/service/guard/authguard.guard';
+import { ViewImagesComponent } from './components/dashboard/images/view-images/view-images.component';
+import { ViewVideosComponent } from './components/dashboard/videos/view-videos/view-videos.component';
 
 const routes: Routes = [
  /* {path: "", component: UploadFileComponent},
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path: 'dashboard', children : [
     {path:'', redirectTo:'videos', pathMatch:'full'},
     {path:'videos', component: VideosComponent},
+    {path:'videos/:id', component: ViewVideosComponent}, 
     {path:'images', component: ImagesComponent},
+    {path:'images/:id', component: ViewImagesComponent}, 
     {path:'fichiers', component: FichiersComponent},
     {path:'fichiers/:id', component: ViewFilesComponent}, 
   ], canActivate : [AuthguardGuard] },

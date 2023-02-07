@@ -1,15 +1,15 @@
-import { Component, OnInit, Inject, Directive } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/shared/service/data/data.service';
 import { FileService } from 'src/app/services/shared/service/file/file.service';
 
 @Component({
-  selector: 'app-add-files',
-  templateUrl: './add-files.component.html',
-  styleUrls: ['./add-files.component.scss']
+  selector: 'app-add-images',
+  templateUrl: './add-images.component.html',
+  styleUrls: ['./add-images.component.scss']
 })
-export class AddFilesComponent implements OnInit {
+export class AddImagesComponent implements OnInit {
 
   actionBtn: string = "Enregistrer";
   form !: FormGroup;
@@ -30,7 +30,7 @@ export class AddFilesComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public editData: any,
     private dataApi: DataService,
     private fileService: FileService,
-    private dialogRef: MatDialogRef<AddFilesComponent>,
+    private dialogRef: MatDialogRef<AddImagesComponent>,
   ) {
     this.title = data.title;
     this.id = data.id;
@@ -98,5 +98,6 @@ export class AddFilesComponent implements OnInit {
     // TODO: prompt user to complete additional fields of metadata
     return { fileUuid }
   }
+
 
 }
