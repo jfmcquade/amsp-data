@@ -70,8 +70,10 @@ export class AddImagesComponent implements OnInit {
   addFiles() {
     if (this.form.valid) {
       if (this.file) {
+        const filepath = `${this.form.value["annee"]}-${this.form.value["projet"]}-${this.form.value["nom_fichier"]}`
+
         // Upload the file to Firebase Storage via the file service
-        this.fileService.uploadFile(this.file)
+        this.fileService.uploadFile(this.file, filepath)
 
         // Upload the metadata to Firestore (eventually to Google Cloud SQL) via the metadata service
         this.dataApi.addFileMetadata(this.form.value)
