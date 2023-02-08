@@ -23,7 +23,7 @@ const routes: Routes = [
     {path:'images/:id', component: ViewImagesComponent}, 
     {path:'fichiers', component: FichiersComponent},
     {path:'fichiers/:id', component: ViewFilesComponent}, 
-  ], canActivate : [AuthguardGuard] },
+  ] , canActivate : [AuthguardGuard] },
     {path: 'login', component: LoginComponent},
     {path : '', redirectTo: 'login', pathMatch: 'full'}
 ];

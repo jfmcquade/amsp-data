@@ -32,3 +32,4 @@ git add .
 git commit -m "migrated angularfire to use compat version; update README; set up firebase emulators"
 git push
 
+ng g s shared/auth/login //login commande
