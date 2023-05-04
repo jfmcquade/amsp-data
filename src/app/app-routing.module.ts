@@ -10,13 +10,19 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { AuthguardGuard } from './services/shared/service/guard/authguard.guard';
 import { ViewImagesComponent } from './components/dashboard/images/view-images/view-images.component';
 import { ViewVideosComponent } from './components/dashboard/videos/view-videos/view-videos.component';
+//import { AppComponent } from './app.component';
+import { HomeComponent } from './components/dashboard/home/home.component';
 
 const routes: Routes = [
  /* {path: "", component: UploadFileComponent},
   {path: "excel", component: ReadXlsxFileComponent},
   {path: "uploadFile", component: UploadFileComponent}*/
+
+
   {path: 'dashboard', children : [
-    {path:'', redirectTo:'videos', pathMatch:'full'},
+
+    {path:'', redirectTo:'home', pathMatch:'full'},
+    {path:'home', component: HomeComponent},
     {path:'videos', component: VideosComponent},
     {path:'videos/:id', component: ViewVideosComponent}, 
     {path:'images', component: ImagesComponent},
@@ -25,7 +31,7 @@ const routes: Routes = [
     {path:'fichiers/:id', component: ViewFilesComponent}, 
   ] , canActivate : [AuthguardGuard] },
     {path: 'login', component: LoginComponent},
-    {path : '', redirectTo: 'login', pathMatch: 'full'}
+    {path : '', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({

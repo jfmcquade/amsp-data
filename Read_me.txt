@@ -33,3 +33,6 @@ git commit -m "migrated angularfire to use compat version; update README; set up
 git push
 
 ng g s shared/auth/login //login commande
+
+https://valor-software.com/ng2-charts/   //installer la chart dans l'application.
+https://highcharts.com // installer la fonction highcharts dans l'application angular mais elle est payante 

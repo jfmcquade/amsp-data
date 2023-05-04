@@ -33,6 +33,14 @@ import { ViewImagesComponent } from './components/dashboard/images/view-images/v
 import { ViewVideosComponent } from './components/dashboard/videos/view-videos/view-videos.component';
 import { AddVideosComponent } from './components/dashboard/videos/add-videos/add-videos.component';
 import { DeleteVideosComponent } from './components/dashboard/videos/delete-videos/delete-videos.component';
+import { SideNavComponent } from './components/dashboard/side-nav/side-nav.component';
+import { MainComponent } from './components/dashboard/main/main.component';
+import { TopWidgetsComponent } from './components/dashboard/top-widgets/top-widgets.component';
+import { FilesUploadedComponent } from './components/dashboard/fichiers/files-uploaded/files-uploaded.component';
+import { VideosUploadedComponent } from './components/dashboard/videos/videos-uploaded/videos-uploaded.component';
+import { ImagesUploadedComponent } from './components/dashboard/images/images-uploaded/images-uploaded.component';
+import { HomeComponent } from './components/dashboard/home/home.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -55,6 +63,13 @@ import { DeleteVideosComponent } from './components/dashboard/videos/delete-vide
     ViewVideosComponent,
     AddVideosComponent,
     DeleteVideosComponent,
+    SideNavComponent,
+    MainComponent,
+    TopWidgetsComponent,
+    FilesUploadedComponent,
+    VideosUploadedComponent,
+    ImagesUploadedComponent,
+    HomeComponent,
   ],
   imports: [
     MaterialModule,
@@ -69,7 +84,8 @@ import { DeleteVideosComponent } from './components/dashboard/videos/delete-vide
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
 
   ],
   providers: [
