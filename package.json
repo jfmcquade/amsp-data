@@ -27,7 +27,11 @@
     "@fortawesome/free-brands-svg-icons": "^6.1.0",
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.0",
+<<<<<<< HEAD
     "firebase": "^9.22.1",
+=======
+    "firebase": "^9.15.0",
+>>>>>>> fba0f8dbba1f20f3f98b574c80a99a132921611a
     "fs": "^0.0.1-security",
     "read-excel-file": "^5.4.4",
     "rxjs": "~7.5.0",
