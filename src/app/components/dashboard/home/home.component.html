@@ -1,0 +1,16 @@
+<!--<div class="container">
+    <div class="header">
+        <app-header></app-header>
+    </div>
+    <div class="main-container">
+        <div class="side-nav">
+            <app-side-nav></app-side-nav>
+        </div>
+    </div>
+    <div class="main">
+        <app-main></app-main>
+    </div>
+
+</div>-->
+
+<h1 *ngIf="user$ | async as user"> Bienvenu, {{user.email}}</h1>

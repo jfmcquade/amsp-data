@@ -10,22 +10,32 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { AuthguardGuard } from './services/shared/service/guard/authguard.guard';
 import { ViewImagesComponent } from './components/dashboard/images/view-images/view-images.component';
 import { ViewVideosComponent } from './components/dashboard/videos/view-videos/view-videos.component';
+//import { AppComponent } from './app.component';
+import { HomeComponent } from './components/dashboard/home/home.component';
+import { LandingComponent } from './components/auth/landing/landing.component';
+import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
 
 const routes: Routes = [
  /* {path: "", component: UploadFileComponent},
   {path: "excel", component: ReadXlsxFileComponent},
   {path: "uploadFile", component: UploadFileComponent}*/
+
+
   {path: 'dashboard', children : [
-    {path:'', redirectTo:'videos', pathMatch:'full'},
+
+    {path:'', redirectTo:'/', pathMatch:'full'},
+    {path:'home', component: HomeComponent},
     {path:'videos', component: VideosComponent},
     {path:'videos/:id', component: ViewVideosComponent}, 
     {path:'images', component: ImagesComponent},
     {path:'images/:id', component: ViewImagesComponent}, 
     {path:'fichiers', component: FichiersComponent},
-    {path:'fichiers/:id', component: ViewFilesComponent}, 
+    {path:'fichiers/:id', component: ViewFilesComponent},
+    {path:'landing', component: LandingComponent},
+    {path:'signup', component: SignUpComponent}, 
   ] , canActivate : [AuthguardGuard] },
     {path: 'login', component: LoginComponent},
-    {path : '', redirectTo: 'login', pathMatch: 'full'}
+    //{path : '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

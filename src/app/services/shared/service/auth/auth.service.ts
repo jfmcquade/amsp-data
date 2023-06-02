@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  currentUser$ = authState(this.auth);
 
   constructor(
     private auth : AngularFireAuth,
@@ -39,4 +42,25 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null ? true : false;
   }
+
+  signUp(email: string, password: string){
+    return from(createUserWithEmailAndPassword(this.auth, email, password)).pipe 
+    switchMap(({ user }) => updateProfile(user, {displayName : name})); 
+  }
 }
+function authState(auth: AngularFireAuth) {
+  throw new Error('Function not implemented.');
+}
+
+function from(arg0: any) {
+  throw new Error('Function not implemented.');
+}
+
+function createUserWithEmailAndPassword(auth: AngularFireAuth, email: string, password: string): any {
+  throw new Error('Function not implemented.');
+}
+
+function updateProfile(user: any, arg1: { displayName: void; }): any {
+  throw new Error('Function not implemented.');
+}
+

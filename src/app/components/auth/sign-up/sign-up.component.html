@@ -1,0 +1,32 @@
+<!--<p>sign-up works!</p>-->
+<div class="form-container mat-elevation-z5">
+    <h1> Se deconnecter</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="submit()"> 
+        <mat-form-field>
+            <input matInput placeholder="Adresse email" formControlName="email">
+            <mat-error *ngIf="email?.errors?.['email']">
+                Le nom est requis
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Mot de passe" formControlName="password">
+            <mat-error *ngIf="password?.errors?.['password']">
+                Mot de passe
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Confirmer le mot de passe" formControlName="confirmPassword">
+            <mat-error *ngIf="confirmPassword?.errors?.['confirmPassword']">
+                Confirmer le mot de passe
+            </mat-error>
+        </mat-form-field>
+        <mat-error *ngIf="signUpForm.errors?.['passwordDonMatch']">
+            Les mots de passes ne sont pas identiques
+        </mat-error>
+        <div class="center margin-top">
+            <button mat-raised-button color="primary" type="submit">
+                Créer un compte
+            </button>
+        </div>
+    </form>
+</div> 

@@ -11,7 +11,7 @@
     </div>
 
     <div class="container">
-        <div style="margin-top: 10px;">
+        <!--<div style="margin-top: 10px;">-->
             <mat-form-field appearance="standard">
                 <mat-label>Filtrer</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. rechercher" #input>
@@ -105,10 +105,10 @@
                     <td class="mat-cell" colspan="4">Pas de correspondance "{{input.value}}"</td>
                   </tr>
                 </table>              
-                <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Selectionner le nombre a afficher"></mat-paginator>
+                <!--<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Selectionner le nombre a afficher"></mat-paginator>-->
             </div>
 
         </div>
     </div>
 
-</div>
+<!--</div>-->

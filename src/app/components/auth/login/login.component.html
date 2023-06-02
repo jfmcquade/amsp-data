@@ -1,8 +1,8 @@
 <div class="row mt-5">
-    <div class="col"></div>
+    <!--<div class="col"></div>-->
     <div class="col">
         <mat-card>
-            <div [formGroup]="form">
+            <div [formGroup]="form" (ngSubmit)="submit()">
                 <mat-card-title>Login</mat-card-title>
                 <mat-form-field>
                     <mat-label>Email</mat-label>
@@ -11,14 +11,16 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Password</mat-label>
-                    <input matInput placeholder="" formControlName="password" required type="password">
+                    <input matInput placeholder="Password" formControlName="password" required type="password">
                     <mat-error *ngIf="form.get('password')?.invalid || form.get('password')"></mat-error>
                 </mat-form-field>
             </div>
+
             <div>
-                <button mat-raised-button color="primary" (click)="login()" class="" >Login</button>
+                <button mat-raised-button color="primary" (click)="login()" class="" type="submit">Login</button>
+                <span>Disposez-vous d'un compte? <a routerLink="sign-up"> Deconnexion </a></span>
             </div>
         </mat-card>
     </div>
-    <div class="col"></div>    
+    <!--<div class="col"></div>-->    
 </div>

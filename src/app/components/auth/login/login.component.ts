@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/shared/service/auth/auth.service';
 
 @Component({
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authApi : AuthService,
+    private router : Router,
+    //private toast : HoToastService,
     private fb : FormBuilder
   ) {
     this.form = this.fb.group({
@@ -29,5 +32,28 @@ export class LoginComponent implements OnInit {
   login(){
     this.authApi.login(this.form.value.email, this.form.value.password);
   }
+
+  logout(){
+   this.authApi.logout(); 
+  }
+
+  submit() {
+    if (!this.form.valid){
+      return;
+    }
+    const {email, password} = this.form.value;
+    this.authApi.login(email, password).pipe(
+      this.toast.observe({
+        success: 'Authentifié avec succès',
+        loading: 'Login in ...',
+        error: 'erreur authentification '
+      })
+    )
+    subscribe(() =>{
+     this.router.navigate(['/home']);
+    });
+  }
+
+
 
 }

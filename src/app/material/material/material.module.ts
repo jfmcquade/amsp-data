@@ -15,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
+//import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 //import {MatDatepickerModule} from '@angular/material/datepicker';
 //import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { HttpClientModule } from '@angular/common/http';
