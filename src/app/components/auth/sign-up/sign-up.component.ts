@@ -35,7 +35,7 @@ export class SignUpComponent implements OnInit {
    {validators: passwordsMatchValidator() })
 
 
-  constructor( private authService : AuthService, private toast: HotToastService, private router: Router) { }
+  constructor( private authService : AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -59,14 +59,6 @@ export class SignUpComponent implements OnInit {
   submit(){
    if (!this.signUpForm.valid) return;
    const {email, password } = this.signUpForm.value; 
-   this.authService.signUp(email, password).pipe(
-    this.toast.observe({
-      success: 'connecté avec succès',
-      loading: 'Signing in',
-      error: ({ message }) => '${message}'
-    })
-   ).subscribe(() => {
-    this.router.navigate(['/home']);
-   })
+   this.authService.signUp(email, password)
   }
 }

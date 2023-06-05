@@ -42,16 +42,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     const {email, password} = this.form.value;
-    this.authApi.login(email, password).pipe(
-      this.toast.observe({
-        success: 'Authentifié avec succès',
-        loading: 'Login in ...',
-        error: 'erreur authentification '
-      })
-    )
-    subscribe(() =>{
-     this.router.navigate(['/home']);
-    });
+    this.authApi.login(email, password)
   }
 
 

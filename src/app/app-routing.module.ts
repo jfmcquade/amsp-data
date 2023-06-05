@@ -12,11 +12,8 @@ import { ViewImagesComponent } from './components/dashboard/images/view-images/v
 import { ViewVideosComponent } from './components/dashboard/videos/view-videos/view-videos.component';
 //import { AppComponent } from './app.component';
 import { HomeComponent } from './components/dashboard/home/home.component';
-<<<<<<< HEAD
 import { LandingComponent } from './components/auth/landing/landing.component';
 import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
-=======
->>>>>>> fba0f8dbba1f20f3f98b574c80a99a132921611a
 
 const routes: Routes = [
  /* {path: "", component: UploadFileComponent},
@@ -26,11 +23,7 @@ const routes: Routes = [
 
   {path: 'dashboard', children : [
 
-<<<<<<< HEAD
     {path:'', redirectTo:'/', pathMatch:'full'},
-=======
-    {path:'', redirectTo:'home', pathMatch:'full'},
->>>>>>> fba0f8dbba1f20f3f98b574c80a99a132921611a
     {path:'home', component: HomeComponent},
     {path:'videos', component: VideosComponent},
     {path:'videos/:id', component: ViewVideosComponent}, 
@@ -42,11 +35,7 @@ const routes: Routes = [
     {path:'signup', component: SignUpComponent}, 
   ] , canActivate : [AuthguardGuard] },
     {path: 'login', component: LoginComponent},
-<<<<<<< HEAD
     //{path : '', redirectTo: 'home', pathMatch: 'full'}
-=======
-    {path : '', redirectTo: '', pathMatch: 'full'}
->>>>>>> fba0f8dbba1f20f3f98b574c80a99a132921611a
 ];
 
 @NgModule({

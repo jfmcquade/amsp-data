@@ -44,8 +44,7 @@ export class AuthService {
   }
 
   signUp(email: string, password: string){
-    return from(createUserWithEmailAndPassword(this.auth, email, password)).pipe 
-    switchMap(({ user }) => updateProfile(user, {displayName : name})); 
+    return createUserWithEmailAndPassword(this.auth, email, password)
   }
 }
 function authState(auth: AngularFireAuth) {
@@ -57,6 +56,7 @@ function from(arg0: any) {
 }
 
 function createUserWithEmailAndPassword(auth: AngularFireAuth, email: string, password: string): any {
+  auth.createUserWithEmailAndPassword(email, password)
   throw new Error('Function not implemented.');
 }
 

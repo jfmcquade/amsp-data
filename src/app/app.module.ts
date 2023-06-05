@@ -41,11 +41,8 @@ import { VideosUploadedComponent } from './components/dashboard/videos/videos-up
 import { ImagesUploadedComponent } from './components/dashboard/images/images-uploaded/images-uploaded.component';
 import { HomeComponent } from './components/dashboard/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-<<<<<<< HEAD
 import { LandingComponent } from './components/auth/landing/landing.component';
 import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
-=======
->>>>>>> fba0f8dbba1f20f3f98b574c80a99a132921611a
 
 @NgModule({
   declarations: [
@@ -75,11 +72,8 @@ import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
     VideosUploadedComponent,
     ImagesUploadedComponent,
     HomeComponent,
-<<<<<<< HEAD
     LandingComponent,
     SignUpComponent,
-=======
->>>>>>> fba0f8dbba1f20f3f98b574c80a99a132921611a
   ],
   imports: [
     MaterialModule,
