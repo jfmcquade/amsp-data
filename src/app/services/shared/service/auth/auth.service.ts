@@ -48,7 +48,7 @@ export class AuthService {
   }
 }
 function authState(auth: AngularFireAuth) {
-  throw new Error('Function not implemented.');
+  console.error('Function not implemented.');
 }
 
 function from(arg0: any) {
