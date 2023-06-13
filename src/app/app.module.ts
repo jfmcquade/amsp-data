@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
 import { AngularFireFunctionsModule, USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/functions';
@@ -90,7 +89,6 @@ import { SignInComponent } from './components/authentification/sign-in/sign-in.c
     AngularFireFunctionsModule,
     AngularFirestoreModule, 
     AngularFireStorageModule,
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,

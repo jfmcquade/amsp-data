@@ -53,6 +53,7 @@ export class ImagesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddFilesComponent, dialogConfig);
     //ReadXlsxFileComponent, UploadFileComponent,
     dialogRef.afterClosed().subscribe(data =>{
+      console.log("data:", data)
       if (!this.editFichiers){
         if (data) {
           //console.log("Enregistrer le fichier :", data);

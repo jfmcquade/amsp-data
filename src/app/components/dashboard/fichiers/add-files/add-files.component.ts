@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Directive } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { DataService } from 'src/app/services/shared/service/data/data.service';
 import { FileService } from 'src/app/services/shared/service/file/file.service';
 
@@ -24,6 +25,8 @@ export class AddFilesComponent implements OnInit {
   serveurs: string[] = ['Google Drive', 'Storage Bucket'];
   file: File | undefined;
   id !: string;
+
+  uploadProgress$: Observable<number | undefined> | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -68,7 +71,7 @@ export class AddFilesComponent implements OnInit {
     }
   }
 
-  addFiles() {
+  async addFiles() {
     if (this.form.valid) {
       if (this.file) {
 
@@ -76,7 +79,7 @@ export class AddFilesComponent implements OnInit {
 
         const filepath = `${this.form.value["annee"]}-${this.form.value["projet"]}-${this.form.value["nom_fichier"]}`
         // Upload the file to Firebase Storage via the file service
-        this.fileService.uploadFile(this.file, filepath)
+        await this.fileService.uploadFile(this.file, filepath)
 
         // Upload the metadata to Firestore (eventually to Google Cloud SQL) via the metadata service
         this.dataApi.addFileMetadata(this.form.value)
