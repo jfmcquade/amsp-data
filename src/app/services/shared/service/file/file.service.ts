@@ -44,6 +44,16 @@ export class FileService {
     // })
   }
 
+  listAllFilesInSubpath(subpath: string) {
+    const ref = this.storage.ref(subpath)
+    return ref.listAll()
+  }
+
+  getUrlForFile(filepath: string) {
+    const ref = this.storage.ref(filepath)
+    return ref.getDownloadURL()
+  }
+
   getFile() {  }
 
   deleteFile() { }

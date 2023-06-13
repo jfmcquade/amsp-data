@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddFilesComponent } from './add-files/add-files.component';
 import { ReadXlsxFileComponent } from '../../read-xlsx-file/read-xlsx-file.component';
@@ -8,9 +8,11 @@ import { DataService } from 'src/app/services/shared/service/data/data.service';
 import { FileService } from 'src/app/services/shared/service/file/file.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
 import { MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
 import { DeleteFilesComponent } from './delete-files/delete-files.component';
 import { ListResult } from '@angular/fire/compat/storage/interfaces';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-fichiers',
@@ -21,9 +23,10 @@ export class FichiersComponent implements OnInit {
 
   //fichierForm !: FormGroup;
   //serveurs : string[] = ['Google Drive', 'Storage Bucket'];
-  displayedColumns: string[] = ['name', 'serveur', 'nom_fichier', 'annee', 'projet', 'responsable_fichier', 'email', 'observation'];
+  displayedColumns: string[] = ['name', 'link'];
   dataSource = new MatTableDataSource<any[]>();
 
+  @ViewChild(MatTable) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   allFiles$: any;
@@ -35,6 +38,7 @@ export class FichiersComponent implements OnInit {
     private dataApi: DataService,
     private fileService: FileService,
     private _snackBar: MatSnackBar,
+    private changeDetectorRefs: ChangeDetectorRef
     //private formBuilder : FormBuilder,
 
 
@@ -43,7 +47,19 @@ export class FichiersComponent implements OnInit {
   ngOnInit(): void {
     this.getAllFichiers()
     this.allFiles$.subscribe((result: any) => {
+      console.log("result:", result)
       this.dataSource.data = result.items
+      if (result.prefixes) {
+        result.prefixes.forEach(async (path: any) => {
+          const result = await firstValueFrom(this.fileService.listAllFilesInSubpath(path.fullPath));
+          await (result.items as any).map(async (item: any) => {
+            item.downloadUrl = await item.getDownloadURL()
+            this.dataSource.data.push(item)
+            console.log("this.dataSource.data:", this.dataSource.data)
+            this.table.renderRows()
+          })
+        })
+      }
     })
   }
 
