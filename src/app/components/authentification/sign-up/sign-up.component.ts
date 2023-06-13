@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/shared/service/auth/auth.service';
@@ -61,4 +61,17 @@ export class SignUpComponent implements OnInit {
    const {email, password } = this.signUpForm.value; 
    this.authService.signUp(email, password)
   }
+}*/
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/shared/service/auth/auth.service';
+@Component({
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss']
+})
+export class SignUpComponent implements OnInit {
+  constructor(
+    public authService: AuthService
+  ) { }
+  ngOnInit() { }
 }

@@ -23,7 +23,7 @@ export class AppComponent {
     private authApi : AuthService
   ){}
 
-  ngOnInit(){
+ /* ngOnInit(){
     this.userLoggedIn = this.authApi.isUserLoggedIn();
-  }
+  }*/
 }

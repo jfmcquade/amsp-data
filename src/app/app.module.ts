@@ -26,7 +26,7 @@ import { AddFilesComponent } from './components/dashboard/fichiers/add-files/add
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteFilesComponent } from './components/dashboard/fichiers/delete-files/delete-files.component';
 import { ViewFilesComponent } from './components/dashboard/fichiers/view-files/view-files.component';
-import { LoginComponent } from './components/auth/login/login.component';
+//import { LoginComponent } from './components/auth/login/login.component';
 import { DeleteImagesComponent } from './components/dashboard/images/delete-images/delete-images.component';
 import { AddImagesComponent } from './components/dashboard/images/add-images/add-images.component';
 import { ViewImagesComponent } from './components/dashboard/images/view-images/view-images.component';
@@ -41,8 +41,12 @@ import { VideosUploadedComponent } from './components/dashboard/videos/videos-up
 import { ImagesUploadedComponent } from './components/dashboard/images/images-uploaded/images-uploaded.component';
 import { HomeComponent } from './components/dashboard/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LandingComponent } from './components/auth/landing/landing.component';
-import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
+import { SignUpComponent } from './components/authentification/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './components/authentification/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './components/authentification/verify-email/verify-email.component';
+import { AuthService } from './services/shared/service/auth/auth.service';
+import { SignInComponent } from './components/authentification/sign-in/sign-in.component';
+//import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,6 @@ import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
     AddFilesComponent,
     DeleteFilesComponent,
     ViewFilesComponent,
-    LoginComponent,
     DeleteImagesComponent,
     AddImagesComponent,
     ViewImagesComponent,
@@ -72,8 +75,11 @@ import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
     VideosUploadedComponent,
     ImagesUploadedComponent,
     HomeComponent,
-    LandingComponent,
     SignUpComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
+    SignInComponent,
+    
   ],
   imports: [
     MaterialModule,
@@ -89,7 +95,8 @@ import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    //ChartsModule, 
 
   ],
   providers: [
@@ -98,6 +105,7 @@ import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
     { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 8080] : undefined },
     { provide: USE_FUNCTIONS_EMULATOR, useValue: !environment.production ? ['localhost', 5001] : undefined },
     { provide: USE_STORAGE_EMULATOR, useValue: !environment.production ? ['localhost', 9199] : undefined },
+    AuthService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [ 
