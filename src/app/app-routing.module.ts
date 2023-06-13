@@ -45,7 +45,9 @@ const routes: Routes = [
     { path: 'verify-email-address', component: VerifyEmailComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'register-user', component: SignUpComponent }
-  ] , canActivate : [AuthGuard] },
+  ]  
+  // , canActivate : [AuthGuard]
+},
     //{path: 'login', component: LoginComponent},
     //{path : '', redirectTo: 'home', pathMatch: 'full'}
     //{path: 'sign-in', component: SignInComponent},
