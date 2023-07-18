@@ -11,17 +11,13 @@ export class FileService {
   constructor(private storage: AngularFireStorage) { }
 
   async uploadFile(file: File, filepath: string) {
-    console.log("File:", file)
-    console.log("filepath:", filepath)
 
     // const uploadTask = this.storage.upload(filepath, file)
     // const uploadProgress$ = uploadTask.percentageChanges()
 
     // return uploadProgress$
-    console.log("storage.Storage:", this.storage.storage)
     const fileRef = this.storage.ref(filepath).child(file.name)
     const result = await fileRef.put(file)
-    console.log("result:", result)
 
     // TO DO: write function to upload file to the amsp storage bucket via Firebase Storage
     // See https://github.com/angular/angularfire/blob/master/docs/storage/storage.md

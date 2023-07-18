@@ -1,5 +1,5 @@
-export interface Fichiers {
-      uuid : string; 
+export interface FileMetadata {
+      id : string; 
       nom_fichier : string; 
       annee : string;
       projet : string; 
@@ -7,7 +7,5 @@ export interface Fichiers {
       responsable_fichier : string;
       email :string; 
       serveur : string; 
-    
-
 }
 

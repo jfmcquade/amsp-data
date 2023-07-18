@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { FileMetadata } from '../../model/fichiers';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,16 @@ export class DataService {
   constructor(private afs: AngularFirestore,
     private http: HttpClient) { }
 
-  addFileMetadata(fileMetadata: any) {
-    // files.uuid = this.afs.createId();
-    // return this.afs.collection("Files/").add(files);
+  async addFileMetadata(fileMetadata: FileMetadata) {
+    // fileMetadata.id = this.afs.createId();
 
-    // TODO: write function to upload metadata
+    // if (fileMetadata.id) {
+    //   await this.afs.collection("files/").doc(fileMetadata.id).set(fileMetadata);
+    // } else {
+      const documentReference = await this.afs.collection("files/").add(fileMetadata);
+      fileMetadata.id = documentReference.id
+      await this.afs.doc(documentReference.path).update({id: documentReference.id})
+    // }
   }
 
   getFileMetadata() {
