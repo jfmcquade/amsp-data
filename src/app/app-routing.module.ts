@@ -25,8 +25,8 @@ const routes: Routes = [
 
   //{path: 'dashboard', children : [
 
-{path: 'sidebar', children : [
-    {path:'', redirectTo:'/', pathMatch:'full'},
+{path: 'dashboard', children : [
+    {path:'', redirectTo:'home', pathMatch:'full'},
     //{ path: '', redirectTo: '/sign-in', pathMatch: 'full' },
     {path:'home', component: HomeComponent},
     {path:'fichiers', component: FichiersComponent},
