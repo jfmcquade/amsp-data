@@ -41,7 +41,7 @@
   },
   "emulators": {
     "hosting": {
-      "port": 8080
+      "port": 4200
     },
     "functions": {
       "port": 5001
@@ -49,6 +49,27 @@
     "ui": {
       "enabled": true
     },
-    "singleProjectMode": true
+    "singleProjectMode": true,
+    "firestore": {
+      "port": 8080
+    },
+    "storage": {
+      "port": 9199
+    },
+    "auth": {
+      "port": 9099
+    },
+    "database": {
+      "port": 9000
+    },
+    "pubsub": {
+      "port": 8085
+    },
+    "eventarc": {
+      "port": 9299
+    }
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

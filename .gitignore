@@ -46,7 +46,7 @@ Thumbs.db
 *-debug.log
 .runtimeconfig.json
 firebaseConfig.ts
-environment.prod.ts
 
 service-accounts/
 excelFiles/
+.dev-data/
