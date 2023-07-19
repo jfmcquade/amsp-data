@@ -7,5 +7,6 @@ export interface FileMetadata {
       responsable_fichier : string;
       email :string; 
       serveur : string; 
+      downloadUrl?: string;
 }
 

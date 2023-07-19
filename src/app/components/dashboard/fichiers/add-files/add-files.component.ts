@@ -76,14 +76,13 @@ export class AddFilesComponent implements OnInit {
     if (this.form.valid) {
       if (this.file) {
 
-        console.log("form value", this.form.value)
+        // Upload the metadata to Firestore (eventually to Google Cloud SQL) via the metadata service
+        const fileId = await this.dataApi.addFileMetadata(this.form.value as FileMetadata)
 
-        const filepath = `${this.form.value["annee"]}-${this.form.value["projet"]}-${this.form.value["nom_fichier"]}`
-        // Upload the file to Firebase Storage via the file service
+        // Upload the file to Firebase Storage via the file service, at a path matching the file's metadata id
+        const filepath = fileId
         await this.fileService.uploadFile(this.file, filepath)
 
-        // Upload the metadata to Firestore (eventually to Google Cloud SQL) via the metadata service
-        await this.dataApi.addFileMetadata(this.form.value as FileMetadata)
 
         this.form.reset();
         this.dialogRef.close('Enregistrer');

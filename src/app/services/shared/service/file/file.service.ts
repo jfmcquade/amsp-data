@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs';
+import { finalize, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +45,12 @@ export class FileService {
     return ref.listAll()
   }
 
-  getUrlForFile(filepath: string) {
+  async getUrlForFile(fileId: string) {
+    const result = await firstValueFrom(this.listAllFilesInSubpath(fileId))
+    console.log("result", result)
+    const filepath = result.items[0].fullPath
     const ref = this.storage.ref(filepath)
+    console.log("ref.getDownloadURL()", ref.getDownloadURL())
     return ref.getDownloadURL()
   }
 

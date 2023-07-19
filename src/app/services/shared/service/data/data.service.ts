@@ -18,13 +18,17 @@ export class DataService {
     //   await this.afs.collection("files/").doc(fileMetadata.id).set(fileMetadata);
     // } else {
       const documentReference = await this.afs.collection("files/").add(fileMetadata);
-      fileMetadata.id = documentReference.id
       await this.afs.doc(documentReference.path).update({id: documentReference.id})
+      return documentReference.id
     // }
   }
 
   getFileMetadata() {
 
+  }
+
+  getAllFileMetadata() {
+    return this.afs.collection<FileMetadata>("files").valueChanges()
   }
 
   updateFiles(fichier : any){

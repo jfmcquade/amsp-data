@@ -12,7 +12,8 @@ import { MatTable } from '@angular/material/table';
 import { MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
 import { DeleteFilesComponent } from './delete-files/delete-files.component';
 import { ListResult } from '@angular/fire/compat/storage/interfaces';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
+import { FileMetadata } from 'src/app/services/shared/model/fichiers';
 
 @Component({
   selector: 'app-fichiers',
@@ -23,8 +24,8 @@ export class FichiersComponent implements OnInit {
 
   //fichierForm !: FormGroup;
   //serveurs : string[] = ['Google Drive', 'Storage Bucket'];
-  displayedColumns: string[] = ['name', 'link'];
-  dataSource = new MatTableDataSource<any[]>();
+  displayedColumns: string[] = ["nom_fichier", "annee", "projet", "observation", "link", "responsable_fichier", "email"];
+  dataSource = new MatTableDataSource<FileMetadata>();
 
   @ViewChild(MatTable) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -44,23 +45,37 @@ export class FichiersComponent implements OnInit {
 
   ) { }
 
-  ngOnInit(): void {
-    this.getAllFichiers()
-    this.allFiles$.subscribe((result: any) => {
-      console.log("result:", result)
-      this.dataSource.data = result.items
-      if (result.prefixes) {
-        result.prefixes.forEach(async (path: any) => {
-          const result = await firstValueFrom(this.fileService.listAllFilesInSubpath(path.fullPath));
-          await (result.items as any).map(async (item: any) => {
-            item.downloadUrl = await item.getDownloadURL()
-            this.dataSource.data.push(item)
-            console.log("this.dataSource.data:", this.dataSource.data)
-            this.table.renderRows()
-          })
+  async ngOnInit() {
+    this.getAllMetadata().subscribe(async (allFilesMetadata: FileMetadata[]) => {
+      console.log("allFilesMetadata:", allFilesMetadata)
+      for (let fileMetadata of allFilesMetadata) {
+        const downloadUrl$ = await this.fileService.getUrlForFile(fileMetadata.id)
+        downloadUrl$.subscribe((url) => {
+          fileMetadata.downloadUrl = url
         })
+        console.log("fileMetadata", fileMetadata)
       }
+      this.dataSource.data = allFilesMetadata
+      this.table.renderRows()
     })
+
+
+    // this.getAllFichiers()
+    // this.allFiles$.subscribe((result: any) => {
+    //   console.log("result:", result)
+    //   this.dataSource.data = result.items
+    //   if (result.prefixes) {
+    //     result.prefixes.forEach(async (path: any) => {
+    //       const result = await firstValueFrom(this.fileService.listAllFilesInSubpath(path.fullPath));
+    //       await (result.items as any).map(async (item: any) => {
+    //         item.downloadUrl = await item.getDownloadURL()
+    //         this.dataSource.data.push(item)
+    //         console.log("this.dataSource.data:", this.dataSource.data)
+    //         this.table.renderRows()
+    //       })
+    //     })
+    //   }
+    // })
   }
 
   addFiles() {
@@ -158,9 +173,9 @@ export class FichiersComponent implements OnInit {
 
   getAllFichiers() {
     this.allFiles$ = this.fileService.listAllFiles()
-    
+
     // const metadata = this.dataApi.getFileMetadata() //I use this line to use a metadata
-    
+
     // this.dataApi.registerFiles()
     // .subscribe({
     //   next:(res)=>{
@@ -173,5 +188,9 @@ export class FichiersComponent implements OnInit {
     //     alert("erreur fichier");
     //   }
     // })
+  }
+
+  getAllMetadata(): Observable<FileMetadata[]> {
+    return this.dataApi.getAllFileMetadata()
   }
 }
