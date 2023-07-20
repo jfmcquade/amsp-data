@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, Directive } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { FileMetadata } from 'src/app/services/shared/model/fichiers';
 import { DataService } from 'src/app/services/shared/service/data/data.service';
 import { FileService } from 'src/app/services/shared/service/file/file.service';
 
@@ -75,14 +76,13 @@ export class AddFilesComponent implements OnInit {
     if (this.form.valid) {
       if (this.file) {
 
-        console.log(this.form.value)
+        // Upload the metadata to Firestore (eventually to Google Cloud SQL) via the metadata service
+        const fileId = await this.dataApi.addFileMetadata(this.form.value as FileMetadata)
 
-        const filepath = `${this.form.value["annee"]}-${this.form.value["projet"]}-${this.form.value["nom_fichier"]}`
-        // Upload the file to Firebase Storage via the file service
+        // Upload the file to Firebase Storage via the file service, at a path matching the file's metadata id
+        const filepath = fileId
         await this.fileService.uploadFile(this.file, filepath)
 
-        // Upload the metadata to Firestore (eventually to Google Cloud SQL) via the metadata service
-        this.dataApi.addFileMetadata(this.form.value)
 
         this.form.reset();
         this.dialogRef.close('Enregistrer');

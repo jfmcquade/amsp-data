@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs';
+import { finalize, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +11,13 @@ export class FileService {
   constructor(private storage: AngularFireStorage) { }
 
   async uploadFile(file: File, filepath: string) {
-    console.log("File:", file)
-    console.log("filepath:", filepath)
 
     // const uploadTask = this.storage.upload(filepath, file)
     // const uploadProgress$ = uploadTask.percentageChanges()
 
     // return uploadProgress$
-    console.log("storage.Storage:", this.storage.storage)
     const fileRef = this.storage.ref(filepath).child(file.name)
     const result = await fileRef.put(file)
-    console.log("result:", result)
 
     // TO DO: write function to upload file to the amsp storage bucket via Firebase Storage
     // See https://github.com/angular/angularfire/blob/master/docs/storage/storage.md
@@ -49,12 +45,21 @@ export class FileService {
     return ref.listAll()
   }
 
-  getUrlForFile(filepath: string) {
+  async getUrlForFile(fileId: string) {
+    const result = await firstValueFrom(this.listAllFilesInSubpath(fileId))
+    console.log("result", result)
+    const filepath = result.items[0].fullPath
     const ref = this.storage.ref(filepath)
+    console.log("ref.getDownloadURL()", ref.getDownloadURL())
     return ref.getDownloadURL()
   }
 
   getFile() {  }
 
-  deleteFile() { }
+  async deleteFile(fileId: string) {
+    const result = await firstValueFrom(this.listAllFilesInSubpath(fileId))
+    const filepath = result.items[0].fullPath
+    const ref = this.storage.ref(filepath)
+    return ref.delete()
+  }
 }
