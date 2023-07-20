@@ -56,5 +56,10 @@ export class FileService {
 
   getFile() {  }
 
-  deleteFile() { }
+  async deleteFile(fileId: string) {
+    const result = await firstValueFrom(this.listAllFilesInSubpath(fileId))
+    const filepath = result.items[0].fullPath
+    const ref = this.storage.ref(filepath)
+    return ref.delete()
+  }
 }

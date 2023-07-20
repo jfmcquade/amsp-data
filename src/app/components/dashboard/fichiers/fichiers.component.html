@@ -1,110 +1,119 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-md-4 mt-3">
-            <mat-card class="add-files text-center" (click) = "addFiles()">
-                <mat-card-content >
-                    Telecharger un fichier <br>
-                    <mat-icon>cloud_upload</mat-icon>
-                </mat-card-content>
-            </mat-card>                
-        </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 mt-3">
+      <mat-card class="add-files text-center" (click)="addFiles()">
+        <mat-card-content>
+          Telecharger un fichier <br />
+          <mat-icon>cloud_upload</mat-icon>
+        </mat-card-content>
+      </mat-card>
     </div>
+  </div>
 
-    <div class="container">
-        <!--<div style="margin-top: 10px;">-->
-            <mat-form-field appearance="standard">
-                <mat-label>Filtrer</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. rechercher" #input>
-              </mat-form-field>
-              
-              <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" matSort>
-              
-                  <!-- Name -->
-                  <ng-container matColumnDef="nom_fichier">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
-                    <td mat-cell *matCellDef="let row"> {{row.nom_fichier}} </td>
-                  </ng-container>
-        
-                  <!-- link -->
-                  <ng-container matColumnDef="link">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Lien </th>
-                    <td mat-cell *matCellDef="let row"> 
-                      <a href="{{row.downloadUrl}}" target="_blank">Téléchargement</a>
-                    </td>
-                  </ng-container>
+  <div class="container">
+    <!--<div style="margin-top: 10px;">-->
+    <mat-form-field appearance="standard">
+      <mat-label>Filtrer</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Ex. rechercher"
+        #input
+      />
+    </mat-form-field>
 
-                  <!-- Serveur -->
-                  <ng-container matColumnDef="serveur">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Serveur </th>
-                    <td mat-cell *matCellDef="let row"> {{row.serveur}} </td>
-                  </ng-container>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Name -->
+        <ng-container matColumnDef="nom_fichier">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+          <td mat-cell *matCellDef="let row">{{ row.nom_fichier }}</td>
+        </ng-container>
 
-                  <!-- Année -->
-                  <ng-container matColumnDef="annee">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Année </th>
-                    <td mat-cell *matCellDef="let row"> {{row.annee}} </td>
-                  </ng-container>
-              
-                  <!-- Projet -->
-                  <ng-container matColumnDef="projet">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Projet </th>
-                    <td mat-cell *matCellDef="let row"> {{row.projet}} </td>
-                  </ng-container>
+        <!-- link -->
+        <ng-container matColumnDef="link">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Lien</th>
+          <td mat-cell *matCellDef="let row">
+            <a href="{{ row.downloadUrl }}" target="_blank">Téléchargement</a>
+          </td>
+        </ng-container>
 
-                   <!-- Responsable du fichier -->
-                  <ng-container matColumnDef="responsable_fichier">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Responsable </th>
-                    <td mat-cell *matCellDef="let row"> {{row.responsable_fichier}} </td>
-                  </ng-container>
+        <!-- Serveur -->
+        <ng-container matColumnDef="serveur">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Serveur</th>
+          <td mat-cell *matCellDef="let row">{{ row.serveur }}</td>
+        </ng-container>
 
-                  <!-- Email -->
-                  <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                    <td mat-cell *matCellDef="let row"> {{row.email}} </td>
-                  </ng-container>
+        <!-- Année -->
+        <ng-container matColumnDef="annee">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Année</th>
+          <td mat-cell *matCellDef="let row">{{ row.annee }}</td>
+        </ng-container>
 
-                  <!-- observation -->
-                  <ng-container matColumnDef="observation">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Observation </th>
-                    <td mat-cell *matCellDef="let row"> {{row.observation}} </td>
-                  </ng-container>
+        <!-- Projet -->
+        <ng-container matColumnDef="projet">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Projet</th>
+          <td mat-cell *matCellDef="let row">{{ row.projet }}</td>
+        </ng-container>
 
-                  <ng-container matColumnDef="action">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-                      <td mat-cell *matCellDef="let row">
-                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example">  
-                          <mat-icon>more_vert</mat-icon>
-                      </button>
-                    </td>
-                   <mat-menu #menu="matMenu">
-                          <button mat-menu-item (click)="viewFiles(row)" >
-                              <mat-icon>open_in_new</mat-icon>
-                              <span>View</span>
-                          </button>
-                          <button mat-menu-item (click)="editFichiers(row)" color="primary">
-                            <mat-icon>edit</mat-icon>
-                            <span>Editer</span>
-                        </button>
-                        <button mat-menu-item (click)="deleteFiles(row)">
-                          <mat-icon>delete</mat-icon>
-                          <span>Supprimer</span>
-                      </button>
-                    </mat-menu>
-                  </ng-container>
-              
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              
-                  <!-- Row shown when there is no matching data. -->
-                  <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">Pas de correspondance "{{input.value}}"</td>
-                  </tr>
-                </table>              
-                <!--<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Selectionner le nombre a afficher"></mat-paginator>-->
-            </div>
+        <!-- Responsable du fichier -->
+        <ng-container matColumnDef="responsable_fichier">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Responsable</th>
+          <td mat-cell *matCellDef="let row">{{ row.responsable_fichier }}</td>
+        </ng-container>
 
-        </div>
+        <!-- Email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+        </ng-container>
+
+        <!-- observation -->
+        <ng-container matColumnDef="observation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Observation</th>
+          <td mat-cell *matCellDef="let row">{{ row.observation }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+          <td mat-cell *matCellDef="let row">
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="viewFiles(row)">
+                <mat-icon>open_in_new</mat-icon>
+                <span>View</span>
+              </button>
+              <!-- <button mat-menu-item (click)="editFichiers(row)" color="primary">
+                <mat-icon>edit</mat-icon>
+                <span>Editer</span>
+              </button> -->
+              <button mat-menu-item (click)="deleteFiles(row)">
+                <mat-icon>delete</mat-icon>
+                <span>Supprimer</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            Pas de correspondance "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+      <!--<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Selectionner le nombre a afficher"></mat-paginator>-->
     </div>
+  </div>
+</div>
 
 <!--</div>-->

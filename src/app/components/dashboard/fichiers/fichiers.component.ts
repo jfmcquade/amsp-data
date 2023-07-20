@@ -24,7 +24,7 @@ export class FichiersComponent implements OnInit {
 
   //fichierForm !: FormGroup;
   //serveurs : string[] = ['Google Drive', 'Storage Bucket'];
-  displayedColumns: string[] = ["nom_fichier", "annee", "projet", "observation", "link", "responsable_fichier", "email"];
+  displayedColumns: string[] = ["nom_fichier", "annee", "projet", "observation", "responsable_fichier", "email", "action"];
   dataSource = new MatTableDataSource<FileMetadata>();
 
   @ViewChild(MatTable) table!: MatTable<any>;
@@ -99,10 +99,10 @@ export class FichiersComponent implements OnInit {
   }
 
   viewFiles(row: any) {
-    window.open('/dashboard/fichiers/' + row.id, '_blank');
+    window.open(row.downloadUrl, '_blank');
   }
 
-  deleteFiles(row: any) {
+  async deleteFiles(row: any) {
     //alert('Vous etes entrain d\'ajouter un fichier')
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -114,9 +114,14 @@ export class FichiersComponent implements OnInit {
     }
     const dialogRef = this.dialog.open(DeleteFilesComponent, dialogConfig);
     //ReadXlsxFileComponent, UploadFileComponent,
-    dialogRef.afterClosed().subscribe(data => {
+    dialogRef.afterClosed().subscribe(async data => {
       if (data) {
-        this.dataApi.deleteFiles(row.id);
+        // Delete metadata from database
+        await this.dataApi.deleteFiles(row.id);
+
+        // Delete file from storage
+        await this.fileService.deleteFile(row.id)
+
         this.openSnackBar("Suppression effectuée", "Ok");
       }
     })

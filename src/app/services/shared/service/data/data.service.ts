@@ -17,9 +17,9 @@ export class DataService {
     // if (fileMetadata.id) {
     //   await this.afs.collection("files/").doc(fileMetadata.id).set(fileMetadata);
     // } else {
-      const documentReference = await this.afs.collection("files/").add(fileMetadata);
-      await this.afs.doc(documentReference.path).update({id: documentReference.id})
-      return documentReference.id
+    const documentReference = await this.afs.collection("files/").add(fileMetadata);
+    await this.afs.doc(documentReference.path).update({ id: documentReference.id })
+    return documentReference.id
     // }
   }
 
@@ -31,16 +31,19 @@ export class DataService {
     return this.afs.collection<FileMetadata>("files").valueChanges()
   }
 
-  updateFiles(fichier : any){
-    return this.afs.doc("fichier"+fichier.id).update(fichier);
+  updateFiles(fichier: any) {
+    return this.afs.doc("fichier" + fichier.id).update(fichier);
   }
 
-  deleteFiles(id: string){
-    return this.afs.doc("fichier"+id).delete();
+  async deleteFiles(id: string) {
+    // return await this.afs.doc("files/" + id)
+    //   .delete();
+    const collection = this.afs.collection("files")
+    collection.doc(id).delete().then(() => console.log("Doc deleted")).catch(e => console.error(e))
   }
 
-  getFilesById(id: string){
-    return this.afs.doc("fichier/"+id).valueChanges();
+  getFilesById(id: string) {
+    return this.afs.doc("fichier/" + id).valueChanges();
   }
 
 }
