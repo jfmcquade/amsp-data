@@ -24,9 +24,6 @@ import { ViewFilesComponent } from './components/dashboard/fichiers/view-files/v
 import { FilesUploadedComponent } from './components/dashboard/fichiers/files-uploaded/files-uploaded.component';
 import { HomeComponent } from './components/dashboard/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SignUpComponent } from './components/authentification/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from './components/authentification/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './components/authentification/verify-email/verify-email.component';
 import { AuthService } from './services/shared/service/auth/auth.service';
 import { SignInComponent } from './components/authentification/sign-in/sign-in.component';
 //import { ChartsModule } from 'ng2-charts';
@@ -45,9 +42,6 @@ import { SignInComponent } from './components/authentification/sign-in/sign-in.c
     ViewFilesComponent,
     FilesUploadedComponent,
     HomeComponent,
-    SignUpComponent,
-    ForgotPasswordComponent,
-    VerifyEmailComponent,
     SignInComponent,
     
   ],
