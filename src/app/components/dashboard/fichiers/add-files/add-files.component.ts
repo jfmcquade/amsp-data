@@ -12,6 +12,7 @@ import { FileService } from 'src/app/services/shared/service/file/file.service';
   styleUrls: ['./add-files.component.scss']
 })
 export class AddFilesComponent implements OnInit {
+  editing = false
 
   actionBtn: string = "Enregistrer";
   form !: FormGroup;
@@ -47,6 +48,7 @@ export class AddFilesComponent implements OnInit {
     this.email = data.email;   
     this.file = data.file; 
     this.actionBtn = data.actionBtn;
+    this.editing = data.editing
   }
 
   ngOnInit(): void {

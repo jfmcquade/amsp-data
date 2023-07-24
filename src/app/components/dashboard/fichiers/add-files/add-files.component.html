@@ -63,7 +63,7 @@
                 </mat-form-field> 
                 
                 <!-- uploader le fichier-->
-                <input title="Upload File" type="file" class="file-upload" (change)="onFileSelected($event)" />
+                <input *ngIf="!editing" title="Upload File" type="file" class="file-upload" (change)="onFileSelected($event)" />
 
                 <!-- Observations -->
             <mat-form-field appearance="outline">

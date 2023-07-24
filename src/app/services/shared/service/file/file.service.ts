@@ -47,7 +47,7 @@ export class FileService {
 
   async getUrlForFile(fileId: string) {
     const result = await firstValueFrom(this.listAllFilesInSubpath(fileId))
-    console.log("result", result)
+    console.log(fileId, result.items[0])
     const filepath = result.items[0].fullPath
     const ref = this.storage.ref(filepath)
     console.log("ref.getDownloadURL()", ref.getDownloadURL())

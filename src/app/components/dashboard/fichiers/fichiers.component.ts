@@ -165,8 +165,11 @@ export class FichiersComponent implements OnInit {
 
   editFichiers(row: any) {
     console.log(row);
+    const modalData = row
+    // Set editing to true to re-use add-files modal component
+    modalData.editing = true
     this.dialog.open(AddFilesComponent, {
-      data: row
+      data: modalData
     })
   }
 
