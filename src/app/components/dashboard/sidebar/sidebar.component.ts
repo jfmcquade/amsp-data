@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/shared/service/auth/auth.service';
+
 
 
 @Component({
@@ -17,7 +19,16 @@ export class SidebarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, public authService: AuthService) {
+    console.log(authService.user$.value?.photoURL)
+  }
+
+  signOut() {
+    console.log("Sign")
+    if (confirm("Deconnecter")) {
+      this.authService.signOut();
+    }
+  }
 
 }
 

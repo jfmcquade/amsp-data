@@ -42,8 +42,17 @@ export class DataService {
     collection.doc(id).delete().then(() => console.log("Doc deleted")).catch(e => console.error(e))
   }
 
+  async updateFile(id: string, fileMetadata: FileMetadata) {
+    const collection = this.afs.collection("files")
+    collection.doc(id).update(fileMetadata).then(() => console.log("Doc updated")).catch(e => console.error(e))
+  }
+
   getFilesById(id: string) {
     return this.afs.doc("fichier/" + id).valueChanges();
+  }
+
+  getAllFiles() {
+    return this.afs.collection("files").valueChanges();
   }
 
 }

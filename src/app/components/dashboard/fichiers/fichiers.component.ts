@@ -130,7 +130,8 @@ export class FichiersComponent implements OnInit {
   editFiles(row: any) {
     if (row.id == null || row.nom_fichier == null) {
       return;
-    }                                                      //function to edit files
+    }
+                                                          //function to edit files
     //alert('Vous etes entrain d\'ajouter un fichier')
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -163,6 +164,7 @@ export class FichiersComponent implements OnInit {
   }
 
   editFichiers(row: any) {
+    console.log(row);
     this.dialog.open(AddFilesComponent, {
       data: row
     })

@@ -86,6 +86,10 @@ export class AddFilesComponent implements OnInit {
 
         this.form.reset();
         this.dialogRef.close('Enregistrer');
+      } else {
+        console.log("file not found");
+        console.log(this.id);
+        this.dataApi.updateFile(this.id, this.form.value as FileMetadata)
       }
     }
   }

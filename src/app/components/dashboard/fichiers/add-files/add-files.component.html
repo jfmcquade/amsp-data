@@ -24,7 +24,7 @@
                     <!-- Annee-->
                     <mat-form-field appearance="outline">
                         <mat-label>Annee </mat-label>
-                        <input matInput placeholder="Ex. 2020" matInput type="number" formControlName="annee" required>
+                        <input min="2006" max="2023" matInput placeholder="Ex. 2020" matInput type="number" formControlName="annee" required>
                         <mat-error *ngIf="form.get('annee')?.invalid || form.get('annee')?.dirty || form.get('annee')?.touched"> Veuillez entrer une annee valide </mat-error>
                         <mat-icon matSuffix>calendar_month</mat-icon>
                         
